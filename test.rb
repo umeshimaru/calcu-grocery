@@ -51,7 +51,7 @@
 
 def calc(current_time, *numbers)
   # 商品一覧
-  goods = [
+  list_items = [
     ["玉ねぎ",100], #1
     ["人参",150], #2
     ["りんご",200], #3
@@ -67,24 +67,35 @@ def calc(current_time, *numbers)
     # 商品の金額の合計(税抜)
     price = 0
     
-    case current_time 
-    
-    when 9..19 
-    for i in numbers  
-    price += goods[i - 1][1]
+     if current_time == 9..19 and numbers.count(1)  >= 5
+    for i in numbers 
+    price += list_items[i - 1][1]
     end 
+    price -= 100 
     
-    when 20..23 , numbers.count(7) >= 1, numbers.count(8) >= 1
+    elsif current_time == 9..19 and 
+    numbers.count(1) < 5 
+    for i in numbers 
+    price += list_items[i - 1][1]
+    end 
+    price -= 50
+    
+   
+    
+    elsif current_time == 20..23 and  numbers.count(7) >= 1 || numbers.count(8) >= 1
     for i in numbers
       if i == 7 
-      price += goods[6][1] / 2
+      price += list_items[6][1] / 2
       elsif i == 8
-      price += goods[7][1] / 2
+      price += list_items[7][1] / 2
       else
-      price += goods[i - 1][1]
+      price += list_items[i - 1][1]
     end 
     end 
     end 
+    
+    
+    # 弁当と飲み物を一緒に買うと２０円引きにする
   
   # 商品の金額の合計(税込)
   tatal = price * 1.1
@@ -92,12 +103,7 @@ def calc(current_time, *numbers)
   
 end 
  
-calc(21, 7,8,1)
+calc(20, 8)
 
 
 
-# ary = [1, 2, 4, 2, 2 ,]
-# if ary.count(2) == 4 
-#   puts "hello"
-# else puts "うんこ"
-# end 

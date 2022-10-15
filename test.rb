@@ -26,7 +26,7 @@
 #     ["ｺｰﾋｰ",100],
             
 #     ]
-#     # 商品の金額の合計（税抜）
+#     # 商品の金額の合計(税抜)
 #     price = 0
 #     for i in numbers  
 #     price += goods[i - 1][1]
@@ -35,7 +35,7 @@
   
   
   
-#   # 商品の金額の合計（税込）
+#   # 商品の金額の合計(税込)
 #   tatal = price * 1.1
 #   puts tatal.floor
   
@@ -52,19 +52,19 @@
 def calc(current_time, *numbers)
   # 商品一覧
   goods = [
-    ["玉ねぎ",100],
-    ["人参",150],
-    ["りんご",200],
-    ["ぶどう",350],
-    ["牛乳",180],
-    ["卵",220],
-    ["唐揚げ弁当",440],
-    ["のり弁",380],
-    ["お茶",80],
-    ["ｺｰﾋｰ",100],
+    ["玉ねぎ",100], #1
+    ["人参",150], #2
+    ["りんご",200], #3
+    ["ぶどう",350], #4
+    ["牛乳",180], #5
+    ["卵",220], #6
+    ["唐揚げ弁当",440], #7
+    ["のり弁",380], #8
+    ["お茶",80], #9
+    ["ｺｰﾋｰ",100], #10
             
     ]
-    # 商品の金額の合計（税抜）
+    # 商品の金額の合計(税抜)
     price = 0
     
     case current_time 
@@ -75,18 +75,24 @@ def calc(current_time, *numbers)
     end 
     
     when 20..23 , numbers.count(7) >= 1, numbers.count(8) >= 1
-    for i in numbers  
-    price += goods[i - 1][1] / 2 
+    for i in numbers
+      if i == 7 
+      price += goods[6][1] / 2
+      elsif i == 8
+      price += goods[7][1] / 2
+      else
+      price += goods[i - 1][1]
+    end 
     end 
     end 
   
-  # 商品の金額の合計（税込）
+  # 商品の金額の合計(税込)
   tatal = price * 1.1
   puts tatal.floor
   
 end 
  
-calc(21, 8,7)
+calc(21, 7,8,1)
 
 
 

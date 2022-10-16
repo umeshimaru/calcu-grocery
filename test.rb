@@ -11,99 +11,115 @@
 =end 
 
 
-# def calc(current_time, *numbers)
+
+  
+  
+
+
+
+# def calc(current_time, *product_numbers)
+#     # 定数
+#   discounted = 50 
+#   more_discounted = 100
+  
+  
 #   # 商品一覧
-#   goods = [
-#     ["玉ねぎ",100],
-#     ["人参",150],
-#     ["りんご",200],
-#     ["ぶどう",350],
-#     ["牛乳",180],
-#     ["卵",220],
-#     ["唐揚げ弁当",440],
-#     ["のり弁",380],
-#     ["お茶",80],
-#     ["ｺｰﾋｰ",100],
+#   list_items = [
+#     ["玉ねぎ",100], #1
+#     ["人参",150], #2
+#     ["りんご",200], #3
+#     ["ぶどう",350], #4
+#     ["牛乳",180], #5
+#     ["卵",220], #6
+#     ["唐揚げ弁当",440], #7
+#     ["のり弁",380], #8
+#     ["お茶",80], #9
+#     ["ｺｰﾋｰ",100], #10
             
-#     ]
-#     # 商品の金額の合計(税抜)
-#     price = 0
-#     for i in numbers  
-#     price += goods[i - 1][1]
-#   end 
-  
-  
-  
-  
-#   # 商品の金額の合計(税込)
-#   tatal = price * 1.1
-#   puts tatal.floor
-  
-  
-  
-  
-  
-  
-# end 
- 
-# calc("15", 1,7)
-
-
-def calc(current_time, *numbers)
-  # 商品一覧
-  list_items = [
-    ["玉ねぎ",100], #1
-    ["人参",150], #2
-    ["りんご",200], #3
-    ["ぶどう",350], #4
-    ["牛乳",180], #5
-    ["卵",220], #6
-    ["唐揚げ弁当",440], #7
-    ["のり弁",380], #8
-    ["お茶",80], #9
-    ["ｺｰﾋｰ",100], #10
-            
-    ]
+    # ]
     # 商品の金額の合計(税抜)
-    price = 0
+    # price = 0
     
-     if current_time == 9..19 and numbers.count(1)  >= 5
-    for i in numbers 
-    price += list_items[i - 1][1]
-    end 
-    price -= 100 
+    # if current_time == 9..19 and product_numbers.count(1)  >= 5
+    # for i in product_numbers 
+    # price += list_items[i - 1][1]
+    # end 
+    #   price -=  more_discounted 
     
-    elsif current_time == 9..19 and 
-    numbers.count(1) < 5 
-    for i in numbers 
-    price += list_items[i - 1][1]
-    end 
-    price -= 50
+    # elsif current_time == 9..19 and 
+    #   product_numbers.count(1) < 5 
+    #   for i in product_numbers 
+    #   price += list_items[i - 1][1]
+    # end 
+    #   price -= discounted
     
    
     
-    elsif current_time == 20..23 and  numbers.count(7) >= 1 || numbers.count(8) >= 1
-    for i in numbers
-      if i == 7 
-      price += list_items[6][1] / 2
-      elsif i == 8
-      price += list_items[7][1] / 2
-      else
-      price += list_items[i - 1][1]
-    end 
-    end 
-    end 
+    # 弁当半額
+    # elsif current_time == 20..23 and  product_numbers.count(7) >= 1 || product_numbers.count(8) >= 1
+    # for i in product_numbers
+    #   if i == 7 
+    #   price += list_items[6][1] / 2
+    #   elsif i == 8
+    #   price += list_items[7][1] / 2
+    #   else
+    #   price += list_items[i - 1][1]
+    # end 
+    # end 
+    # end 
     
     
     # 弁当と飲み物を一緒に買うと２０円引きにする
   
   # 商品の金額の合計(税込)
-  tatal = price * 1.1
-  puts tatal.floor
+#   tatal = price * 1.1
+#   puts tatal.floor
   
-end 
+# end 
  
-calc(20, 8)
+# calc(20, 8)
+
+# a = [ "a", "b", "c" ] 
+# b = [ "a", "b", "c" ,"d","e"] 
+# puts b.permutation(a.size).include?(a) 
 
 
+=begin 
+①弁当と飲み物の配列を作成する
+②product_umbersの配列から弁当と飲み物に該当するproduct_numbersを抜き出す
+③①の弁当の配列と飲み物の配列にそのproduct_numberがあるかどうかを調べる
+③２０円引く
+=end 
 
+# def calc(current_time, *product_numbers)
+# # 商品一覧
+#   list_items = [
+#     ["玉ねぎ",100], #1
+#     ["人参",150], #2
+#     ["りんご",200], #3
+#     ["ぶどう",350], #4
+#     ["牛乳",180], #5
+#     ["卵",220], #6
+#     ["唐揚げ弁当",440], #7
+#     ["のり弁",380], #8
+#     ["お茶",80], #9
+#     ["ｺｰﾋｰ",100], #10
+#   bentos = [7,8]
+#   bevarages =[5,9,10]
+#   bentos.each do |bento|
+#   bevarages.each do |bevarage|
+#   end 
+#   end 
+# end 
+#   calc(20, 2,7,9)
+  
+  
+  
+
+list = [1, 2, 3, 4, 5]
+ 
+list_new = list.select do |x|
+  x == [3,5 ]
+end
+ 
+p list_new

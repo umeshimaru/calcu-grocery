@@ -19,9 +19,9 @@
 
 # def calc(current_time, *product_numbers)
 #     # 定数
-#   discounted = 50 #玉ねぎ3つ
-#   more_discounted = 100  #玉ねぎ5つ
-    # combo_discounted = 20    #弁当と飲み物が選ばれた時の割引
+#   onion_discounted = 50 #玉ねぎ3つ
+#   onion_more_discounted = 100  #玉ねぎ5つ
+    # bento_drink_discounted = 20    #弁当と飲み物が選ばれた時の割引
   
   
 #   # 商品一覧
@@ -45,7 +45,7 @@
     # for i in product_numbers 
     # price += list_items[i - 1][1]
     # end 
-    #   price -=  more_discounted 
+    #   price -=  onion_more_discounted 
     
     # elsif current_time == 9..19 and 
     #   product_numbers.count(1) < 5 
@@ -87,7 +87,7 @@
 
 =begin 
 ①弁当と飲み物の配列を作成する
-②product_umbersの配列から弁当と飲み物に該当するproduct_numbersを順番に抜き出す
+②product_numbersの配列から弁当と飲み物に該当するproduct_numbersを順番に抜き出す
 ③①の弁当の配列と飲み物の配列にそのproduct_numberがあるかどうかを調べる
 ③20円引く
 =end 
@@ -117,7 +117,7 @@
 #   if product_numbers.include?(bevarage) &&
 #   product_numbers.include?(bento)
 
-#     price -=　combo_discounted end 
+#     price -= combo_discounted end 
 # else 
 # for i in product_numbers 
 #     combo_discounted = 20
@@ -134,7 +134,7 @@
 
 # calc(19, 5,7)
 
-#スーパーで買った商品の合計金額を計算するプログラム
+#ｽｰﾊﾟｰで買った商品の合計金額を計算するﾌﾟﾛｸﾞﾗﾑ
 def calc(current_time, *product_numbers)#購入時刻と商品番号
   
   #税抜価格
@@ -142,41 +142,52 @@ def calc(current_time, *product_numbers)#購入時刻と商品番号
   #税込価格
   total = 0
   
-  #下の配列２つは
-  #飲み物の商品番号
-  bevarages = [1,2]
-  #弁当の商品番号
-  bentos = [3,4]
+ 
   
   #商品一覧
 items_list = [ 
-  ["コーラ",100],#商品番号１
-  ["ファンタ",150],#商品番号２
-  ["のり弁",450],#商品番号３
-  ["幕の内弁当",500],#商品番号４
-  ["洗剤",350]#商品番号５
+  ["玉ねぎ",100],#商品番号1
+  ["人参",150],#商品番号2
+  ["りんご",200],#商品番号3
+  ["ぶどう",350],#商品番号4
+  ["牛乳",180],#商品番号5
+  ["卵",220],#商品番号6
+  ["唐揚げ弁当",440],#商品番号7
+  ["のり弁",380],#商品番号8
+  ["お茶",80],#商品番号9
+  ["ｺｰﾋｰ",100],#商品番号10
  ]
+ 
+ #飲み物
+ drinks = [5,8,9]
+ 
+ #弁当 
+ bentos = [7,8]
+ 
+ 
 
-#注文された商品番号に対する商品の税抜価格を計算しています。
-# bevarages.each do |bevarage|
-# bentos.each do |bento|
-items_list.each do |item|
-  if product_numbers.include?( && 
-  product_numbers.include?()
-  for i in product_numbers
-    price += items_list[i - 1][1]
-end
+#注文された商品番号に弁当と飲み物が含まれているとき20円びきをする税抜価格を計算しています｡
+drinks.each do |drink|
+bentos.each do |bento|
+if product_numbers.include?(drink) && product_numbers.include?(bento)
+  for i in product_numbers 
+  price += list_items[i - 1][1]
   price -= 20
-
+end 
 else 
-  for i in product_numbers
-    price += items_list[i - 1][1]
-end
-end
+   for i in product_numbers 
+  price += items_list[i - 1][1]
 end 
 end 
-total = price * 1.1
-puts "商品購入時刻は#{current_time}時,合計#{total.floor}円です。
+end
+puts price 
+tatal = price * 1.1
+
+  
+end
 end
 
-calc(20, 1,3)#第一引数に購入時刻、第二引数以降に商品番号が渡されます
+
+calc(20,1)
+
+#第一引数に購入時刻､第二引数以降に商品番号が渡されます

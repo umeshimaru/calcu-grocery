@@ -11,7 +11,6 @@
 =end 
 
 
-
   
   
 
@@ -138,9 +137,9 @@
 def calc(current_time, *product_numbers)#購入時刻と商品番号
   
   #税抜価格
-  price = 0
+  without_tax = 0
   #税込価格
-  total = 0
+  total_tax_included = 0
   
  
   
@@ -164,30 +163,34 @@ items_list = [
  #弁当 
  bentos = [7,8]
  
- 
+#入力された商品の税抜き価格を計算するメソッド
+def chosen_items 
+  for i in product_numbers
+  without_tax += items_list[i - 1][1]
+end 
+end 
 
 #注文された商品番号に弁当と飲み物が含まれているとき20円びきをする税抜価格を計算しています｡
-drinks.each do |drink|
-bentos.each do |bento|
-if product_numbers.include?(drink) && product_numbers.include?(bento)
-  for i in product_numbers 
-  price += list_items[i - 1][1]
-  price -= 20
+if product_numbers.any? {|p| drinks.include?(p)} && product_numbers.any? {|a| bentos.include?(a)} 
+for i in product_numbers
+  without_tax += items_list[i - 1][1]
 end 
+without_tax -= 20
 else 
-   for i in product_numbers 
-  price += items_list[i - 1][1]
+  for i in product_numbers
+  without_tax += items_list[i - 1][1]
 end 
+ 
 end 
-end
-puts price 
-tatal = price * 1.1
 
+
+total_tax_included = without_tax * 1.1
+puts total_tax_included.floor
   
-end
+
 end
 
 
-calc(20,1)
+calc(20,5,7)
 
 #第一引数に購入時刻､第二引数以降に商品番号が渡されます

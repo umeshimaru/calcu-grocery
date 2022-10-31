@@ -14,8 +14,8 @@ drinks = [5,8,9]
 #弁当 
 bentos = [7,8]
  
-three_onion_discounted = 50 #玉ねぎ3つ
-five_onion_discounted = 100  #玉ねぎ5つ
+three_onion_discounted = 50 #玉ねぎ3つ買うと５０円割引
+five_onion_discounted = 100  #玉ねぎ5つで１００円割引
 bento_drink_discounted = 20 #弁当と飲み物をセットで買うと２０円引き
  
   
@@ -35,8 +35,10 @@ items_list = [
  
 
   # 営業時間によって割引があるかないかが変わるプログラム
-  case current_time
+  # 現在の時刻
+  case current_time　
   
+  # 9時から19時の間
   when 9..19
     # 玉ねぎ３個の割引
   without_tax -= three_onion_discounted if product_numbers.count(1) == 3
@@ -59,56 +61,52 @@ else
    
 end 
 
-    弁当半額セール
+ 
   when 20..23
-    # 弁当半額
-if bentos_array = product_numbers.select {|number| number == 8 || 7}
-  product_numbers.delete(7)
-  product_numbers.delete(8)
-  bentos_array.each do |i|
-    without_tax += items_list[i - 1][1] / 2
-  
-  end 
-  product_numbers.each do |i|
-    without_tax += items_list[i - 1][1]
+     #注文された商品番号に弁当と飲み物が含まれているとき20円びきをする税抜価格を計算しています
+  if product_numbers.any? {|p| drinks.include?(p)} && product_numbers.any? {|a| bentos.include?(a)} 
+without_tax -= bento_drink_discounted
   end 
 
-else
+       # 弁当半額
+       
+  if bentos.any?{|number|product_numbers.include?(number)}
+     bentos_array = product_numbers.select {  |b| b == 7 || b == 8} 
+    bentos_array.each do |i|
+    without_tax += items_list[i - 1][1] / 2
+  end 
+  product_numbers.delete(7)
+  product_numbers.delete(8)
+  product_numbers.each do |c|
+    without_tax += items_list[c - 1][1]
+  end 
+  else
     product_numbers.each do |i|
     without_tax += items_list[i - 1][1]
   end 
-
-#     # 玉ねぎ３個の割引
-#     without_tax -= three_onion_discounted if product_numbers.count(1) == 3
-#   # 玉ねぎ５つの割引
-#   without_tax -= five_onion_discounted if product_numbers.count(1) == 5
-# end 
-# #注文された商品番号に弁当と飲み物が含まれているとき20円びきをする税抜価格を計算しています｡
-# if product_numbers.any? {|p| drinks.include?(p)} && product_numbers.any? {|a| bentos.include?(a)} 
-# for i in product_numbers
-#   without_tax += items_list[i - 1][1]
-# end 
-# without_tax -= bento_drink_discounted
-# else 
-#   for i in product_numbers
-#   without_tax += items_list[i - 1][1]
-# end 
-# end 
-
-    
-  
-# # 税込み価格の計算
-# total_tax_included = without_tax * 1.1
-# puts total_tax_included.floor
-
-# end
-end 
   end 
+  end 
+  
+          # 玉ねぎ３個の割引
+  without_tax -= three_onion_discounted if product_numbers.count(1) == 3
+   
+  
+  # 玉ねぎ５つの割引
+  without_tax -= five_onion_discounted if product_numbers.count(1) == 5
+  
 
+
+
+
+# # 税込み価格の計算
+total_tax_included = without_tax * 1.1
+puts total_tax_included.floor
+
+
+end 
 
 #第一引数に購入時刻､第二引数以降に商品番号が渡されます
-calc(20,[7,8,1])
+calc(20,[8,9])
 
 
-end 
 
